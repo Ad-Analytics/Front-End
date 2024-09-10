@@ -44,10 +44,6 @@ AdAnalytics é uma poderosa ferramenta de análise de publicidade que ajuda empr
 
 Consulte o arquivo `src/config.js` para ajustar as configurações do aplicativo conforme necessário.
 
-## Contribuindo
-
-Contribuições são bem-vindas! Por favor, leia o arquivo CONTRIBUTING.md para detalhes sobre nosso código de conduta e o processo para enviar pull requests.
-
 ## Licença
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE.md para detalhes.
