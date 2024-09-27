@@ -8,8 +8,7 @@ import jsconfigPaths from 'vite-jsconfig-paths';
 
 export default defineConfig({
   plugins: [react(), jsconfigPaths()],
-  // https://github.com/jpuri/react-draft-wysiwyg/issues/1317
-  base: '/dashboard', // Alterado de '/free' para '/dashboard'
+  base: '/dashboard',
   define: {
     global: 'window'
   },

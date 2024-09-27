@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-// material-ui
 import { useTheme } from '@mui/material/styles';
 
-// third-party
 import ReactApexChart from 'react-apexcharts';
 
-// chart options
 const areaChartOptions = {
   chart: {
     height: 450,
@@ -25,10 +22,11 @@ const areaChartOptions = {
   },
   grid: {
     strokeDashArray: 0
+  },
+  tooltip: {
+    theme: 'dark'
   }
 };
-
-// ==============================|| INCOME AREA CHART ||============================== //
 
 export default function IncomeAreaChart({ slot }) {
   const theme = useTheme();
@@ -45,8 +43,8 @@ export default function IncomeAreaChart({ slot }) {
       xaxis: {
         categories:
           slot === 'month'
-            ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            ? ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+            : ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
         labels: {
           style: {
             colors: [
@@ -86,11 +84,11 @@ export default function IncomeAreaChart({ slot }) {
 
   const [series, setSeries] = useState([
     {
-      name: 'Page Views',
+      name: 'Visualizações de Página',
       data: [0, 86, 28, 115, 48, 210, 136]
     },
     {
-      name: 'Sessions',
+      name: 'Sessões',
       data: [0, 43, 14, 56, 24, 105, 68]
     }
   ]);
@@ -98,11 +96,11 @@ export default function IncomeAreaChart({ slot }) {
   useEffect(() => {
     setSeries([
       {
-        name: 'Page Views',
+        name: 'Visualizações de Página',
         data: slot === 'month' ? [76, 85, 101, 98, 87, 105, 91, 114, 94, 86, 115, 35] : [31, 40, 28, 51, 42, 109, 100]
       },
       {
-        name: 'Sessions',
+        name: 'Sessões',
         data: slot === 'month' ? [110, 60, 150, 35, 60, 36, 26, 45, 65, 52, 53, 41] : [11, 32, 45, 32, 34, 52, 41]
       }
     ]);
