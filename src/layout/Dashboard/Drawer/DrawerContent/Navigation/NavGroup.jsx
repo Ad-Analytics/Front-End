@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
-// material-ui
+
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-// project import
 import NavItem from './NavItem';
 import { useGetMenuMaster } from 'api/menu';
 
@@ -17,7 +16,7 @@ export default function NavGroup({ item }) {
       case 'collapse':
         return (
           <Typography key={menuItem.id} variant="caption" color="error" sx={{ p: 2.5 }}>
-            collapse - only available in paid version
+            collapse
           </Typography>
         );
       case 'item':

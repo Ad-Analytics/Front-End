@@ -78,17 +78,22 @@ export default function IncomeAreaChart({ slot }) {
       },
       grid: {
         borderColor: line
+      },
+      legend: {
+        labels: {
+          colors: 'text.secondary'
+        }
       }
     }));
   }, [primary, secondary, line, theme, slot]);
 
   const [series, setSeries] = useState([
     {
-      name: 'Visualizações de Página',
+      name: 'Impressões',
       data: [0, 86, 28, 115, 48, 210, 136]
     },
     {
-      name: 'Sessões',
+      name: 'Cliques',
       data: [0, 43, 14, 56, 24, 105, 68]
     }
   ]);

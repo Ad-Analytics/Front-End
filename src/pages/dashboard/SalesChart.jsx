@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Checkbox from '@mui/material/Checkbox';
@@ -11,13 +10,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-// project import
 import MainCard from 'components/MainCard';
 
-// third-party
 import ReactApexChart from 'react-apexcharts';
 
-// chart options
 const columnChartOptions = {
   chart: {
     type: 'bar',
@@ -41,20 +37,21 @@ const columnChartOptions = {
     colors: ['transparent']
   },
   xaxis: {
-    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+    categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']
   },
   yaxis: {
     title: {
-      text: '$ (thousands)'
+      text: 'R$ (milhares)'
     }
   },
   fill: {
     opacity: 1
   },
   tooltip: {
+    theme: 'dark',
     y: {
       formatter(val) {
-        return `$ ${val} thousands`;
+        return `R$ ${val} mil`;
       }
     }
   },
@@ -75,16 +72,14 @@ const columnChartOptions = {
 
 const initialSeries = [
   {
-    name: 'Income',
+    name: 'Receita',
     data: [180, 90, 135, 114, 120, 145]
   },
   {
-    name: 'Cost Of Sales',
+    name: 'Custo de Vendas',
     data: [120, 45, 78, 150, 168, 99]
   }
 ];
-
-// ==============================|| SALES COLUMN CHART ||============================== //
 
 export default function SalesChart() {
   const theme = useTheme();
@@ -118,7 +113,7 @@ export default function SalesChart() {
     } else if (income) {
       setSeries([
         {
-          name: 'Income',
+          name: 'Receita',
           data: [180, 90, 135, 114, 120, 145]
         }
       ]);
@@ -168,18 +163,18 @@ export default function SalesChart() {
       <Box sx={{ p: 2.5, pb: 0 }}>
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Stack spacing={1.5}>
-            <Typography variant="h6" color="secondary">
-              Net Profit
+            <Typography variant="h6" color="text.secondary">
+              Lucro Líquido
             </Typography>
-            <Typography variant="h4">$1560</Typography>
+            <Typography variant="h4">R$ 1.560</Typography>
           </Stack>
           <FormControl component="fieldset">
             <FormGroup row>
               <FormControlLabel
                 control={<Checkbox color="warning" checked={income} onChange={handleLegendChange} name="income" />}
-                label="Income"
+                label="Receita"
               />
-              <FormControlLabel control={<Checkbox checked={cos} onChange={handleLegendChange} name="cos" />} label="Cost of Sales" />
+              <FormControlLabel control={<Checkbox checked={cos} onChange={handleLegendChange} name="cos" />} label="Custo de Vendas" />
             </FormGroup>
           </FormControl>
         </Stack>

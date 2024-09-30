@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 
-// material-ui
 import { useTheme } from '@mui/material/styles';
 
-// third-party
 import ReactApexChart from 'react-apexcharts';
 
-// chart options
 const areaChartOptions = {
   chart: {
     height: 340,
@@ -51,13 +48,12 @@ const areaChartOptions = {
     show: false
   },
   tooltip: {
+    theme: 'dark',
     x: {
       format: 'MM'
     }
   }
 };
-
-// ==============================|| REPORT AREA CHART ||============================== //
 
 export default function ReportAreaChart() {
   const theme = useTheme();
@@ -91,7 +87,7 @@ export default function ReportAreaChart() {
 
   const [series] = useState([
     {
-      name: 'Series 1',
+      name: 'Conversões',
       data: [58, 115, 28, 83, 63, 75, 35, 55]
     }
   ]);

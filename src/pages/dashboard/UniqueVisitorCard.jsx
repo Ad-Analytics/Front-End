@@ -1,17 +1,14 @@
 import { useState } from 'react';
 
-// material-ui
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-// project import
 import MainCard from 'components/MainCard';
 import IncomeAreaChart from './IncomeAreaChart';
 
-// ==============================|| DEFAULT - UNIQUE VISITOR ||============================== //
 
 export default function UniqueVisitorCard() {
   const [slot, setSlot] = useState('week');
@@ -20,7 +17,7 @@ export default function UniqueVisitorCard() {
     <>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
-          <Typography variant="h5">Unique Visitor</Typography>
+          <Typography variant="h5">Engajamento do Usuário</Typography>
         </Grid>
         <Grid item>
           <Stack direction="row" alignItems="center" spacing={0}>
@@ -30,7 +27,7 @@ export default function UniqueVisitorCard() {
               color={slot === 'month' ? 'primary' : 'secondary'}
               variant={slot === 'month' ? 'outlined' : 'text'}
             >
-              Month
+              Mês
             </Button>
             <Button
               size="small"
@@ -38,7 +35,7 @@ export default function UniqueVisitorCard() {
               color={slot === 'week' ? 'primary' : 'secondary'}
               variant={slot === 'week' ? 'outlined' : 'text'}
             >
-              Week
+              Semana
             </Button>
           </Stack>
         </Grid>

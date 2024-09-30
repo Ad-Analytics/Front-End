@@ -43,7 +43,7 @@ export default function Palette(mode, presetColor) {
       ...paletteColor,
       text: {
         primary: mode === 'dark' ? '#FFFFFF' : paletteColor.grey[700],
-        secondary: mode === 'dark' ? '#CCCCCC' : paletteColor.grey[500],
+        secondary: mode === 'dark' ? '#A0A0A0' : paletteColor.grey[500],
         disabled: mode === 'dark' ? '#999999' : paletteColor.grey[400]
       },
       action: {

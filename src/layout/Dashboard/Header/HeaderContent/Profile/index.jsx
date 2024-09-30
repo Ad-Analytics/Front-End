@@ -126,7 +126,7 @@ export default function Profile() {
                           <Stack>
                             <Typography variant="h6">Lucas Costela</Typography>
                             <Typography variant="body2" color="text.secondary">
-                              UI/UX Designer
+                              Assistente de Vendas
                             </Typography>
                           </Stack>
                         </Stack>
@@ -152,7 +152,7 @@ export default function Profile() {
                           textTransform: 'capitalize'
                         }}
                         icon={<UserOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
-                        label="Profile"
+                        label="Perfil"
                         {...a11yProps(0)}
                       />
                       <Tab
@@ -164,7 +164,7 @@ export default function Profile() {
                           textTransform: 'capitalize'
                         }}
                         icon={<SettingOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
-                        label="Setting"
+                        label="Configurações"
                         {...a11yProps(1)}
                       />
                     </Tabs>

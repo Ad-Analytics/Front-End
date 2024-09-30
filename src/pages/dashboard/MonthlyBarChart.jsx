@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
 
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-// third-party
 import ReactApexChart from 'react-apexcharts';
 
-// chart options
 const barChartOptions = {
   chart: {
     type: 'bar',
@@ -26,7 +23,7 @@ const barChartOptions = {
     enabled: false
   },
   xaxis: {
-    categories: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+    categories: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
     axisBorder: {
       show: false
     },
@@ -39,10 +36,11 @@ const barChartOptions = {
   },
   grid: {
     show: false
+  },
+  tooltip: {
+    theme: 'dark'
   }
 };
-
-// ==============================|| MONTHLY BAR CHART ||============================== //
 
 export default function MonthlyBarChart() {
   const theme = useTheme();
@@ -52,7 +50,8 @@ export default function MonthlyBarChart() {
 
   const [series] = useState([
     {
-      data: [80, 95, 70, 42, 65, 55, 78]
+      name: 'CTR',
+      data: [2.8, 3.2, 2.5, 3.5, 2.9, 3.8, 3.1]
     }
   ]);
 

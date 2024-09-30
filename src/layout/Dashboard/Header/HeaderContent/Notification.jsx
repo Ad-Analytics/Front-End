@@ -99,14 +99,14 @@ export default function Notification() {
             <Paper sx={{ boxShadow: theme.customShadows.z1, width: '100%', minWidth: 285, maxWidth: { xs: 285, md: 420 } }}>
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard
-                  title="Notification"
+                  title="Notificações"
                   elevation={0}
                   border={false}
                   content={false}
                   secondary={
                     <>
                       {read > 0 && (
-                        <Tooltip title="Mark as all read">
+                        <Tooltip title="Marcar todas como lidas">
                           <IconButton color="success" size="small" onClick={() => setRead(0)}>
                             <CheckCircleOutlined style={{ fontSize: '1.15rem' }} />
                           </IconButton>
@@ -136,18 +136,18 @@ export default function Notification() {
                       <ListItemText
                         primary={
                           <Typography variant="h6">
-                            It&apos;s{' '}
+                            Sua campanha de{' '}
                             <Typography component="span" variant="subtitle1">
-                              Cristina danny&apos;s
+                              Promoção de Verão
                             </Typography>{' '}
-                            birthday today.
+                            foi enviada com sucesso.
                           </Typography>
                         }
-                        secondary="2 min ago"
+                        secondary="2 min atrás"
                       />
                       <ListItemSecondaryAction>
                         <Typography variant="caption" noWrap>
-                          3:00 AM
+                          3:00
                         </Typography>
                       </ListItemSecondaryAction>
                     </ListItemButton>
@@ -162,16 +162,16 @@ export default function Notification() {
                         primary={
                           <Typography variant="h6">
                             <Typography component="span" variant="subtitle1">
-                              Aida Burg
+                              Niko
                             </Typography>{' '}
-                            commented your post.
+                            comentou sobre sua campanha.
                           </Typography>
                         }
-                        secondary="5 August"
+                        secondary="5 de agosto"
                       />
                       <ListItemSecondaryAction>
                         <Typography variant="caption" noWrap>
-                          6:00 PM
+                          6:00
                         </Typography>
                       </ListItemSecondaryAction>
                     </ListItemButton>
@@ -185,17 +185,17 @@ export default function Notification() {
                       <ListItemText
                         primary={
                           <Typography variant="h6">
-                            Your Profile is Complete &nbsp;
+                            Sua campanha está{' '}
                             <Typography component="span" variant="subtitle1">
-                              60%
+                              80% completa
                             </Typography>{' '}
                           </Typography>
                         }
-                        secondary="7 hours ago"
+                        secondary="7 horas atrás"
                       />
                       <ListItemSecondaryAction>
                         <Typography variant="caption" noWrap>
-                          2:45 PM
+                          2:45
                         </Typography>
                       </ListItemSecondaryAction>
                     </ListItemButton>
@@ -208,19 +208,19 @@ export default function Notification() {
                         primary={
                           <Typography variant="h6">
                             <Typography component="span" variant="subtitle1">
-                              Cristina Danny
+                              Gustavo Henrique
                             </Typography>{' '}
-                            invited to join{' '}
+                            convidou você para participar de{' '}
                             <Typography component="span" variant="subtitle1">
-                              Meeting.
+                              uma reunião de marketing.
                             </Typography>
                           </Typography>
                         }
-                        secondary="Daily scrum meeting time"
+                        secondary="Horário da reunião"
                       />
                       <ListItemSecondaryAction>
                         <Typography variant="caption" noWrap>
-                          9:10 PM
+                          9:10
                         </Typography>
                       </ListItemSecondaryAction>
                     </ListItemButton>
@@ -229,7 +229,7 @@ export default function Notification() {
                       <ListItemText
                         primary={
                           <Typography variant="h6" color="primary">
-                            View All
+                            Ver Todas
                           </Typography>
                         }
                       />

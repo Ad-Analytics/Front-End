@@ -1,31 +1,26 @@
 import { useState } from 'react';
 
-// material-ui
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-// project import
 import SalesChart from './SalesChart';
 
-// sales report status
 const status = [
   {
     value: 'today',
-    label: 'Today'
+    label: 'Hoje'
   },
   {
     value: 'month',
-    label: 'This Month'
+    label: 'Este Mês'
   },
   {
     value: 'year',
-    label: 'This Year'
+    label: 'Este Ano'
   }
 ];
-
-// ==============================|| DEFAULT - SALES REPORT ||============================== //
 
 export default function SaleReportCard() {
   const [value, setValue] = useState('today');
@@ -34,7 +29,7 @@ export default function SaleReportCard() {
     <>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
-          <Typography variant="h5">Sales Report</Typography>
+          <Typography variant="h5">Relatório de Campanhas</Typography>
         </Grid>
         <Grid item>
           <TextField

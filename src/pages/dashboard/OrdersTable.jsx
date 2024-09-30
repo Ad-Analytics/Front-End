@@ -22,16 +22,16 @@ function createData(tracking_no, name, fat, carbs, protein) {
 }
 
 const rows = [
-  createData(84564564, 'Camera Lens', 40, 2, 40570),
+  createData(84564564, 'Camera', 40, 2, 40570),
   createData(98764564, 'Laptop', 300, 0, 180139),
-  createData(98756325, 'Mobile', 355, 1, 90989),
+  createData(98756325, 'Celular', 355, 1, 90989),
   createData(98652366, 'Handset', 50, 1, 10239),
-  createData(13286564, 'Computer Accessories', 100, 1, 83348),
+  createData(13286564, 'Acessórios de Computador', 100, 1, 83348),
   createData(86739658, 'TV', 99, 0, 410780),
-  createData(13256498, 'Keyboard', 125, 2, 70999),
+  createData(13256498, 'Teclado', 125, 2, 70999),
   createData(98753263, 'Mouse', 89, 2, 10570),
   createData(98753275, 'Desktop', 185, 1, 98063),
-  createData(98753291, 'Chair', 100, 0, 14001)
+  createData(98753291, 'Cadeira', 100, 0, 14001)
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -62,39 +62,36 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'tracking_no',
+    id: 'campaign_id',
     align: 'left',
     disablePadding: false,
-    label: 'Tracking No.'
+    label: 'ID da Campanha'
   },
   {
     id: 'name',
     align: 'left',
     disablePadding: true,
-    label: 'Product Name'
+    label: 'Nome da Campanha'
   },
   {
-    id: 'fat',
+    id: 'impressions',
     align: 'right',
     disablePadding: false,
-    label: 'Total Order'
+    label: 'Impressões'
   },
   {
-    id: 'carbs',
-    align: 'left',
-    disablePadding: false,
-
-    label: 'Status'
-  },
-  {
-    id: 'protein',
+    id: 'clicks',
     align: 'right',
     disablePadding: false,
-    label: 'Total Amount'
+    label: 'Cliques'
+  },
+  {
+    id: 'ctr',
+    align: 'right',
+    disablePadding: false,
+    label: 'CTR'
   }
 ];
-
-// ==============================|| ORDER TABLE - HEADER ||============================== //
 
 function OrderTableHead({ order, orderBy }) {
   return (
@@ -122,19 +119,19 @@ function OrderStatus({ status }) {
   switch (status) {
     case 0:
       color = 'warning';
-      title = 'Pending';
+      title = 'Pendente';
       break;
     case 1:
       color = 'success';
-      title = 'Approved';
+      title = 'Aprovado';
       break;
     case 2:
       color = 'error';
-      title = 'Rejected';
+      title = 'Rejeitado';
       break;
     default:
       color = 'primary';
-      title = 'None';
+      title = 'Nenhum';
   }
 
   return (
@@ -144,8 +141,6 @@ function OrderStatus({ status }) {
     </Stack>
   );
 }
-
-// ==============================|| ORDER TABLE ||============================== //
 
 export default function OrderTable() {
   const order = 'asc';
@@ -177,8 +172,8 @@ export default function OrderTable() {
                   tabIndex={-1}
                   key={row.tracking_no}
                 >
-                  <TableCell component="th" id={labelId} scope="row">
-                    <Link color="secondary"> {row.tracking_no}</Link>
+                  <TableCell component="th" id={labelId} scope="row" sx={{ color: 'text.secondary' }}>
+                    <Link color="secondary" sx={{ color: 'text.secondary' }}>{row.tracking_no}</Link>
                   </TableCell>
                   <TableCell>{row.name}</TableCell>
                   <TableCell align="right">{row.fat}</TableCell>
@@ -186,7 +181,7 @@ export default function OrderTable() {
                     <OrderStatus status={row.carbs} />
                   </TableCell>
                   <TableCell align="right">
-                    <NumericFormat value={row.protein} displayType="text" thousandSeparator prefix="$" />
+                    <NumericFormat value={row.protein} displayType="text" thousandSeparator prefix="R$" />
                   </TableCell>
                 </TableRow>
               );

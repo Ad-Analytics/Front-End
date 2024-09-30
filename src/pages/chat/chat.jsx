@@ -207,7 +207,7 @@ export default function AdAnalyticsDashboard() {
     <DarkPaper>
       <Box display="flex" justifyContent="space-between" alignItems="center" padding="1rem">
         <IconButton onClick={toggleLeftMenu} style={{ color: '#7aa2f7' }}>
-          <MenuIcon />
+        
         </IconButton>
         <Typography variant="h5" style={{ color: '#7aa2f7' }}>
           Ad Analytics
