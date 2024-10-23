@@ -172,18 +172,49 @@ export default function AdAnalyticsDashboard() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (input.trim() === '') return;
 
+    // Adiciona mensagem do usuário
     setMessages(prev => [...prev, { text: input, isUser: true }]);
     setInput('');
     setIsTyping(true);
 
-    // Simula uma resposta do Ad Analytics após 1 segundo
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://api.lucascossitt.site/chat-api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: input,
+          context: messages.map(msg => ({
+            role: msg.isUser ? 'user' : 'assistant',
+            content: msg.text
+          }))
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro na comunicação com o servidor');
+      }
+
+      const data = await response.json();
+      
       setIsTyping(false);
-      setMessages(prev => [...prev, { text: `Aqui está uma análise baseada em: "${input}"`, isUser: false }]);
-    }, 1000);
+      setMessages(prev => [...prev, { 
+        text: data.response || data.message,
+        isUser: false 
+      }]);
+
+    } catch (error) {
+      console.error('Erro:', error);
+      setIsTyping(false);
+      setMessages(prev => [...prev, { 
+        text: 'Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.',
+        isUser: false 
+      }]);
+    }
   };
 
   const handleSuggestionClick = (suggestion) => {
