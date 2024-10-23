@@ -1553,6 +1553,32 @@
   dependencies:
     eslint-scope "5.1.1"
 
+"@nlux/core@2.17.1":
+  version "2.17.1"
+  resolved "https://registry.npmjs.org/@nlux/core/-/core-2.17.1.tgz"
+  integrity sha512-hIvOnuENVqWaIg5Co4JtFmHph7Sp0Nj+QixOMdOW9Ou7CjU7HK+maB5koLoayNL64B+wHTtgPN7zBrB8NCSPXw==
+
+"@nlux/nlbridge-react@^2.17.1":
+  version "2.17.1"
+  resolved "https://registry.npmjs.org/@nlux/nlbridge-react/-/nlbridge-react-2.17.1.tgz"
+  integrity sha512-wimc+avPyoaPOvIp5XFTLoIIpkXh8REcQ9hxkfCtbt/EqEvPTArjaWnqPb4Kg9W+6kpMImIBh+UILxpiRySaXQ==
+  dependencies:
+    "@nlux/nlbridge" "2.17.1"
+
+"@nlux/nlbridge@2.17.1":
+  version "2.17.1"
+  resolved "https://registry.npmjs.org/@nlux/nlbridge/-/nlbridge-2.17.1.tgz"
+  integrity sha512-Gj35tCznwLOGY6/DVWZi7d0n/qo70DlHRauWTRvUPv3sbrc7XSJQ7E3fPIw0dTYUsLit6eK+7NCYxzUIBqJT4A==
+  dependencies:
+    "@nlux/core" "2.17.1"
+
+"@nlux/react@^2.17.1":
+  version "2.17.1"
+  resolved "https://registry.npmjs.org/@nlux/react/-/react-2.17.1.tgz"
+  integrity sha512-/t6qDAHIefg1vGIthLOtkQxbI4Sh/aL7/eqVuhcoC1w/8NqnvVxwfxR0mkshcIVrKSwHI8Yjav5edZ2yeRBqMw==
+  dependencies:
+    "@nlux/core" "2.17.1"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
