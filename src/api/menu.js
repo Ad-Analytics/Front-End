@@ -34,7 +34,6 @@ export function useGetMenuMaster() {
 }
 
 export function handlerDrawerOpen(isDashboardDrawerOpened) {
-  // to update local state based on key
 
   mutate(
     endpoints.key + endpoints.master,
@@ -46,7 +45,6 @@ export function handlerDrawerOpen(isDashboardDrawerOpened) {
 }
 
 export function handlerActiveItem(openedItem) {
-  // to update local state based on key
 
   mutate(
     endpoints.key + endpoints.master,

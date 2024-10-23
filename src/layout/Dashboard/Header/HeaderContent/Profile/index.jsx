@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import CardContent from '@mui/material/CardContent';
@@ -17,20 +16,18 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-// project import
 import ProfileTab from './ProfileTab';
 import SettingTab from './SettingTab';
 import Avatar from 'components/@extended/Avatar';
 import MainCard from 'components/MainCard';
 import Transitions from 'components/@extended/Transitions';
 
-// assets
 import LogoutOutlined from '@ant-design/icons/LogoutOutlined';
 import SettingOutlined from '@ant-design/icons/SettingOutlined';
 import UserOutlined from '@ant-design/icons/UserOutlined';
 import avatar1 from 'assets/images/users/avatar-1.png';
+import avatarLucas from 'assets/images/users/avatar-lucas.jpg'  
 
-// tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {
   return (
     <div role="tabpanel" hidden={value !== index} id={`profile-tabpanel-${index}`} aria-labelledby={`profile-tab-${index}`} {...other}>
@@ -45,8 +42,6 @@ function a11yProps(index) {
     'aria-controls': `profile-tabpanel-${index}`
   };
 }
-
-// ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
 export default function Profile() {
   const theme = useTheme();
@@ -89,7 +84,7 @@ export default function Profile() {
         onClick={handleToggle}
       >
         <Stack direction="row" spacing={1.25} alignItems="center" sx={{ p: 0.5 }}>
-          <Avatar alt="profile user" src={avatar1} size="sm" />
+          <Avatar alt="profile user" src={avatarLucas} size="sm" />
           <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
             Lucas Costela
           </Typography>
@@ -122,7 +117,7 @@ export default function Profile() {
                     <Grid container justifyContent="space-between" alignItems="center">
                       <Grid item>
                         <Stack direction="row" spacing={1.25} alignItems="center">
-                          <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
+                          <Avatar alt="profile user" src={avatarLucas} sx={{ width: 32, height: 32 }} />
                           <Stack>
                             <Typography variant="h6">Lucas Costela</Typography>
                             <Typography variant="body2" color="text.secondary">

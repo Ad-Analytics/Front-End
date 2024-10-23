@@ -175,13 +175,12 @@ export default function AdAnalyticsDashboard() {
   const handleSendMessage = async () => {
     if (input.trim() === '') return;
 
-    // Adiciona mensagem do usuário
     setMessages(prev => [...prev, { text: input, isUser: true }]);
     setInput('');
     setIsTyping(true);
 
     try {
-      const response = await fetch('https://api.lucascossitt.site/chat-api', {
+      const response = await fetch('https://api.lucascossitt.site/api', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -1,12 +1,8 @@
-// assets
 import { MessageOutlined } from '@ant-design/icons';
 
-// icons
 const icons = {
   MessageOutlined
 };
-
-// ==============================|| MENU ITEMS - CHAT ||============================== //
 
 const chat = {
   id: 'chat',

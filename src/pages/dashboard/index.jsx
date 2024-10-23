@@ -1,4 +1,3 @@
-// material-ui
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Button from '@mui/material/Button';
@@ -12,7 +11,6 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-// project import
 import MainCard from 'components/MainCard';
 import AnalyticEcommerce from 'components/cards/statistics/AnalyticEcommerce';
 import MonthlyBarChart from './MonthlyBarChart';
@@ -21,7 +19,6 @@ import UniqueVisitorCard from './UniqueVisitorCard';
 import SaleReportCard from './SaleReportCard';
 import OrdersTable from './OrdersTable';
 
-// assets
 import GiftOutlined from '@ant-design/icons/GiftOutlined';
 import MessageOutlined from '@ant-design/icons/MessageOutlined';
 import SettingOutlined from '@ant-design/icons/SettingOutlined';
@@ -29,15 +26,14 @@ import avatar1 from 'assets/images/users/avatar-1.png';
 import avatar2 from 'assets/images/users/avatar-2.png';
 import avatar3 from 'assets/images/users/avatar-3.png';
 import avatar4 from 'assets/images/users/avatar-4.png';
+import avatarLucas from 'assets/images/users/avatar-lucas.jpg'
 
-// avatar style
 const avatarSX = {
   width: 36,
   height: 36,
   fontSize: '1rem'
 };
 
-// action style
 const actionSX = {
   mt: 0.75,
   ml: 1,
@@ -46,8 +42,6 @@ const actionSX = {
   alignSelf: 'flex-start',
   transform: 'none'
 };
-
-// ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 export default function DashboardDefault() {
   return (
@@ -228,7 +222,7 @@ export default function DashboardDefault() {
               </Grid>
               <Grid item>
                 <AvatarGroup sx={{ '& .MuiAvatar-root': { width: 32, height: 32 } }}>
-                  <Avatar alt="Remy Sharp" src={avatar1} />
+                  <Avatar alt="Remy Sharp" src={avatarLucas} />
                   <Avatar alt="Travis Howard" src={avatar2} />
                   <Avatar alt="Cindy Baker" src={avatar3} />
                   <Avatar alt="Agnes Walker" src={avatar4} />

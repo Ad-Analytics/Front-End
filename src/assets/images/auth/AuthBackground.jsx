@@ -1,9 +1,6 @@
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import logo from './logo.png';
-
-// ==============================|| AUTH BLUR BACK SVG ||============================== //
 
 export default function AuthBackground() {
   const theme = useTheme();
