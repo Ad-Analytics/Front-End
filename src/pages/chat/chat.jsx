@@ -10,6 +10,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import DeleteIcon from '@mui/icons-material/Delete';
 import LogoutIcon from '@mui/icons-material/Logout';
 import logoImage from 'assets/images/auth/logo.png';
+import { useChatAdapter } from '@nlux/nlbridge-react';
 
 const pulseAnimation = keyframes`
   0% {
@@ -153,6 +154,12 @@ export default function AdAnalyticsDashboard() {
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
   const messagesEndRef = useRef(null);
 
+  const adapterOptions = {
+    url: 'https://api.lucascossitt.site/chat',
+  };
+
+  const nlbridgeAdapter = useChatAdapter(adapterOptions);
+
   const suggestions = [
     { title: 'Análise de gráficos de vendas', subtitle: 'Tendências dos últimos 6 meses' },
     { title: 'Dashboard de desempenho', subtitle: 'KPIs principais da empresa' },
@@ -180,29 +187,17 @@ export default function AdAnalyticsDashboard() {
     setIsTyping(true);
 
     try {
-      const response = await fetch('https://api.lucascossitt.site/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: input,
-          context: messages.map(msg => ({
-            role: msg.isUser ? 'user' : 'assistant',
-            content: msg.text
-          }))
-        })
+      const response = await nlbridgeAdapter.sendMessage({
+        message: input,
+        context: messages.map(msg => ({
+          role: msg.isUser ? 'user' : 'assistant',
+          content: msg.text
+        }))
       });
-
-      if (!response.ok) {
-        throw new Error('Erro na comunicação com o servidor');
-      }
-
-      const data = await response.json();
       
       setIsTyping(false);
       setMessages(prev => [...prev, { 
-        text: data.response || data.message,
+        text: response.content || response.message,
         isUser: false 
       }]);
 
