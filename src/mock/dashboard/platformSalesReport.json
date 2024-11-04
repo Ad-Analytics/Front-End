@@ -1,0 +1,90 @@
+{
+  "google": {
+    "today": {
+      "netProfit": "R$ 1.890",
+      "series": [
+        {
+          "name": "Receita",
+          "data": [180, 90, 135, 114, 120, 145]
+        },
+        {
+          "name": "Custo de Vendas",
+          "data": [120, 45, 78, 150, 168, 99]
+        }
+      ],
+      "categories": ["Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    },
+    "month": {
+      "netProfit": "R$ 15.260",
+      "series": [
+        {
+          "name": "Receita",
+          "data": [220, 115, 130, 145, 180, 190, 140, 160, 150, 120, 140, 165]
+        },
+        {
+          "name": "Custo de Vendas",
+          "data": [140, 65, 80, 95, 120, 130, 85, 100, 95, 75, 85, 105]
+        }
+      ],
+      "categories": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    },
+    "year": {
+      "netProfit": "R$ 186.450",
+      "series": [
+        {
+          "name": "Receita",
+          "data": [2200, 1950, 2100, 2300, 2150, 2400]
+        },
+        {
+          "name": "Custo de Vendas",
+          "data": [1400, 1250, 1350, 1450, 1350, 1550]
+        }
+      ],
+      "categories": ["2019", "2020", "2021", "2022", "2023", "2024"]
+    }
+  },
+  "meta": {
+    "today": {
+      "netProfit": "R$ 1.560",
+      "series": [
+        {
+          "name": "Receita",
+          "data": [150, 85, 125, 110, 115, 135]
+        },
+        {
+          "name": "Custo de Vendas",
+          "data": [100, 40, 70, 140, 150, 90]
+        }
+      ],
+      "categories": ["Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    },
+    "month": {
+      "netProfit": "R$ 12.890",
+      "series": [
+        {
+          "name": "Receita",
+          "data": [190, 105, 120, 135, 160, 170, 130, 150, 140, 110, 130, 155]
+        },
+        {
+          "name": "Custo de Vendas",
+          "data": [120, 55, 70, 85, 110, 120, 75, 90, 85, 65, 75, 95]
+        }
+      ],
+      "categories": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    },
+    "year": {
+      "netProfit": "R$ 154.320",
+      "series": [
+        {
+          "name": "Receita",
+          "data": [1900, 1750, 1900, 2100, 1950, 2200]
+        },
+        {
+          "name": "Custo de Vendas",
+          "data": [1200, 1150, 1250, 1350, 1250, 1450]
+        }
+      ],
+      "categories": ["2019", "2020", "2021", "2022", "2023", "2024"]
+    }
+  }
+}

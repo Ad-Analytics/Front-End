@@ -14,7 +14,7 @@ import MainCard from 'components/MainCard';
 
 import ReactApexChart from 'react-apexcharts';
 
-import salesData from 'mock/dashboard/salesReport.json';
+import platformSalesData from 'mock/dashboard/platformSalesReport.json';
 
 const columnChartOptions = {
   chart: {
@@ -39,7 +39,7 @@ const columnChartOptions = {
     colors: ['transparent']
   },
   xaxis: {
-    categories: salesData.categories
+    categories: []
   },
   yaxis: {
     title: {
@@ -72,7 +72,7 @@ const columnChartOptions = {
   ]
 };
 
-export default function SalesChart() {
+export default function SalesChart({ period, platform }) {
   const theme = useTheme();
 
   const [legend, setLegend] = useState({
@@ -89,8 +89,8 @@ export default function SalesChart() {
   const primaryMain = theme.palette.primary.main;
   const successDark = theme.palette.success.dark;
 
-  const [series, setSeries] = useState(salesData.series);
-  const [netProfit] = useState(salesData.netProfit);
+  const [series, setSeries] = useState([]);
+  const [netProfit, setNetProfit] = useState(0);
 
   const handleLegendChange = (event) => {
     setLegend({ ...legend, [event.target.name]: event.target.checked });
@@ -100,55 +100,49 @@ export default function SalesChart() {
   const [options, setOptions] = useState(columnChartOptions);
 
   useEffect(() => {
-    if (income && cos) {
-      setSeries(salesData.series);
-    } else if (income) {
-      setSeries([
-        {
-          name: 'Receita',
-          data: [180, 90, 135, 114, 120, 145]
-        }
-      ]);
-    } else if (cos) {
-      setSeries([
-        {
-          name: 'Cost Of Sales',
-          data: [120, 45, 78, 150, 168, 99]
-        }
-      ]);
-    } else {
-      setSeries([]);
-    }
-  }, [income, cos]);
-
-  useEffect(() => {
-    setOptions((prevState) => ({
-      ...prevState,
-      colors: !(income && cos) && cos ? [primaryMain] : [warning, primaryMain],
-      xaxis: {
-        labels: {
-          style: {
-            colors: [secondary, secondary, secondary, secondary, secondary, secondary]
-          }
-        }
-      },
-      yaxis: {
-        labels: {
-          style: {
-            colors: [secondary]
-          }
-        }
-      },
-      grid: {
-        borderColor: line
-      },
-      plotOptions: {
-        bar: {
-          columnWidth: xsDown ? '60%' : '30%'
-        }
+    const data = platformSalesData[platform][period];
+    if (data) {
+      if (income && cos) {
+        setSeries(data.series);
+      } else if (income) {
+        setSeries([data.series[0]]);
+      } else if (cos) {
+        setSeries([data.series[1]]);
+      } else {
+        setSeries([]);
       }
-    }));
-  }, [primary, secondary, line, warning, primaryMain, successDark, income, cos, xsDown]);
+      setNetProfit(data.netProfit);
+
+      setOptions(prev => ({
+        ...prev,
+        colors: !(income && cos) && cos ? [primaryMain] : [warning, primaryMain],
+        xaxis: {
+          ...prev.xaxis,
+          categories: data.categories,
+          labels: {
+            style: {
+              colors: Array(data.categories.length).fill(secondary)
+            }
+          }
+        },
+        yaxis: {
+          labels: {
+            style: {
+              colors: [secondary]
+            }
+          }
+        },
+        grid: {
+          borderColor: line
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: xsDown ? '60%' : '30%'
+          }
+        }
+      }));
+    }
+  }, [platform, period, income, cos, secondary, warning, primaryMain, line, xsDown]);
 
   return (
     <MainCard sx={{ mt: 1 }} content={false}>
