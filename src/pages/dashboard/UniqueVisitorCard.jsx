@@ -8,10 +8,16 @@ import Box from '@mui/material/Box';
 
 import MainCard from 'components/MainCard';
 import IncomeAreaChart from './IncomeAreaChart';
+import PlatformSelector from 'components/selectors/PlatformSelector';
 
 
 export default function UniqueVisitorCard() {
   const [slot, setSlot] = useState('week');
+  const [platform, setPlatform] = useState('google');
+
+  const handlePlatformChange = (event) => {
+    setPlatform(event.target.value);
+  };
 
   return (
     <>
@@ -20,29 +26,32 @@ export default function UniqueVisitorCard() {
           <Typography variant="h5">Engajamento do Usuário</Typography>
         </Grid>
         <Grid item>
-          <Stack direction="row" alignItems="center" spacing={0}>
-            <Button
-              size="small"
-              onClick={() => setSlot('month')}
-              color={slot === 'month' ? 'primary' : 'secondary'}
-              variant={slot === 'month' ? 'outlined' : 'text'}
-            >
-              Mês
-            </Button>
-            <Button
-              size="small"
-              onClick={() => setSlot('week')}
-              color={slot === 'week' ? 'primary' : 'secondary'}
-              variant={slot === 'week' ? 'outlined' : 'text'}
-            >
-              Semana
-            </Button>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <PlatformSelector platform={platform} onChange={handlePlatformChange} />
+            <Stack direction="row" alignItems="center" spacing={0}>
+              <Button
+                size="small"
+                onClick={() => setSlot('month')}
+                color={slot === 'month' ? 'primary' : 'secondary'}
+                variant={slot === 'month' ? 'outlined' : 'text'}
+              >
+                Mês
+              </Button>
+              <Button
+                size="small"
+                onClick={() => setSlot('week')}
+                color={slot === 'week' ? 'primary' : 'secondary'}
+                variant={slot === 'week' ? 'outlined' : 'text'}
+              >
+                Semana
+              </Button>
+            </Stack>
           </Stack>
         </Grid>
       </Grid>
       <MainCard content={false} sx={{ mt: 1.5 }}>
         <Box sx={{ pt: 1, pr: 2 }}>
-          <IncomeAreaChart slot={slot} />
+          <IncomeAreaChart slot={slot} platform={platform} />
         </Box>
       </MainCard>
     </>

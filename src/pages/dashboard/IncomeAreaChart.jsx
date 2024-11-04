@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 
 import ReactApexChart from 'react-apexcharts';
 
-import engagementData from 'mock/dashboard/engagementReport.json';
+import { platformData } from 'mock/dashboard/platformData';
 
 const areaChartOptions = {
   chart: {
@@ -30,7 +30,7 @@ const areaChartOptions = {
   }
 };
 
-export default function IncomeAreaChart({ slot }) {
+export default function IncomeAreaChart({ slot, platform }) {
   const theme = useTheme();
 
   const { primary, secondary } = theme.palette.text;
@@ -89,13 +89,17 @@ export default function IncomeAreaChart({ slot }) {
     }));
   }, [primary, secondary, line, theme, slot]);
 
-  const [series, setSeries] = useState(engagementData.weeklyData.series);
+  const [series, setSeries] = useState([]);
 
   useEffect(() => {
-    setSeries(slot === 'month' ? engagementData.monthlyData.series : engagementData.weeklyData.series);
-  }, [slot]);
+    const data = platformData[platform][`${slot}lyData`];
+    setSeries(data.series);
+  }, [slot, platform]);
 
   return <ReactApexChart options={options} series={series} type="area" height={450} />;
 }
 
-IncomeAreaChart.propTypes = { slot: PropTypes.string };
+IncomeAreaChart.propTypes = {
+  slot: PropTypes.string,
+  platform: PropTypes.string
+};
