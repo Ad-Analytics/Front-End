@@ -1,0 +1,18 @@
+{
+  "netProfit": "R$ 1.560",
+  "series": [
+    {
+      "name": "Receita",
+      "data": [180, 90, 135, 114, 120, 145]
+    },
+    {
+      "name": "Custo de Vendas",
+      "data": [120, 45, 78, 150, 168, 99]
+    }
+  ],
+  "categories": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
+  "filters": {
+    "income": true,
+    "cost": true
+  }
+}

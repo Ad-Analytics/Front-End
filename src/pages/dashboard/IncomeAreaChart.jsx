@@ -5,6 +5,8 @@ import { useTheme } from '@mui/material/styles';
 
 import ReactApexChart from 'react-apexcharts';
 
+import engagementData from 'mock/dashboard/engagementReport.json';
+
 const areaChartOptions = {
   chart: {
     height: 450,
@@ -87,28 +89,10 @@ export default function IncomeAreaChart({ slot }) {
     }));
   }, [primary, secondary, line, theme, slot]);
 
-  const [series, setSeries] = useState([
-    {
-      name: 'Impressões',
-      data: [0, 86, 28, 115, 48, 210, 136]
-    },
-    {
-      name: 'Cliques',
-      data: [0, 43, 14, 56, 24, 105, 68]
-    }
-  ]);
+  const [series, setSeries] = useState(engagementData.weeklyData.series);
 
   useEffect(() => {
-    setSeries([
-      {
-        name: 'Visualizações de Página',
-        data: slot === 'month' ? [76, 85, 101, 98, 87, 105, 91, 114, 94, 86, 115, 35] : [31, 40, 28, 51, 42, 109, 100]
-      },
-      {
-        name: 'Sessões',
-        data: slot === 'month' ? [110, 60, 150, 35, 60, 36, 26, 45, 65, 52, 53, 41] : [11, 32, 45, 32, 34, 52, 41]
-      }
-    ]);
+    setSeries(slot === 'month' ? engagementData.monthlyData.series : engagementData.weeklyData.series);
   }, [slot]);
 
   return <ReactApexChart options={options} series={series} type="area" height={450} />;

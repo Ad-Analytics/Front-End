@@ -14,6 +14,8 @@ import MainCard from 'components/MainCard';
 
 import ReactApexChart from 'react-apexcharts';
 
+import salesData from 'mock/dashboard/salesReport.json';
+
 const columnChartOptions = {
   chart: {
     type: 'bar',
@@ -37,7 +39,7 @@ const columnChartOptions = {
     colors: ['transparent']
   },
   xaxis: {
-    categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun']
+    categories: salesData.categories
   },
   yaxis: {
     title: {
@@ -70,17 +72,6 @@ const columnChartOptions = {
   ]
 };
 
-const initialSeries = [
-  {
-    name: 'Receita',
-    data: [180, 90, 135, 114, 120, 145]
-  },
-  {
-    name: 'Custo de Vendas',
-    data: [120, 45, 78, 150, 168, 99]
-  }
-];
-
 export default function SalesChart() {
   const theme = useTheme();
 
@@ -98,7 +89,8 @@ export default function SalesChart() {
   const primaryMain = theme.palette.primary.main;
   const successDark = theme.palette.success.dark;
 
-  const [series, setSeries] = useState(initialSeries);
+  const [series, setSeries] = useState(salesData.series);
+  const [netProfit] = useState(salesData.netProfit);
 
   const handleLegendChange = (event) => {
     setLegend({ ...legend, [event.target.name]: event.target.checked });
@@ -109,7 +101,7 @@ export default function SalesChart() {
 
   useEffect(() => {
     if (income && cos) {
-      setSeries(initialSeries);
+      setSeries(salesData.series);
     } else if (income) {
       setSeries([
         {
@@ -166,7 +158,7 @@ export default function SalesChart() {
             <Typography variant="h6" color="text.secondary">
               Lucro Líquido
             </Typography>
-            <Typography variant="h4">R$ 1.560</Typography>
+            <Typography variant="h4">{netProfit}</Typography>
           </Stack>
           <FormControl component="fieldset">
             <FormGroup row>

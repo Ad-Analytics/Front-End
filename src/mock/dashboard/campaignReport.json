@@ -1,0 +1,44 @@
+{
+  "metrics": {
+    "impressions": {
+      "total": "420,236",
+      "growth": 59.3,
+      "extra": "35,000"
+    },
+    "clicks": {
+      "total": "78,250",
+      "growth": 70.5,
+      "extra": "8,900"
+    },
+    "conversions": {
+      "total": "18,800",
+      "growth": 27.4,
+      "extra": "1,943"
+    },
+    "roi": {
+      "total": "35.78%",
+      "growth": 27.4,
+      "extra": "20.95%"
+    }
+  },
+  "recentCampaigns": [
+    {
+      "id": "002434",
+      "clicks": 1430,
+      "ctr": "78%",
+      "date": "Hoje, 2:00 AM"
+    },
+    {
+      "id": "984947",
+      "leads": 302,
+      "conversion": "8%",
+      "date": "5 de Agosto, 1:45 PM"
+    },
+    {
+      "id": "988784",
+      "impressions": 682,
+      "reach": "16%",
+      "date": "7 horas atrás"
+    }
+  ]
+} 

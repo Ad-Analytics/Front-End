@@ -28,6 +28,10 @@ import avatar3 from 'assets/images/users/avatar-3.png';
 import avatar4 from 'assets/images/users/avatar-4.png';
 import avatarLucas from 'assets/images/users/avatar-lucas.jpg'
 
+import campaignData from 'mock/dashboard/campaignReport.json';
+import engagementData from 'mock/dashboard/engagementReport.json';
+import areaData from 'mock/dashboard/areaReport.json';
+
 const avatarSX = {
   width: 36,
   height: 36,
@@ -51,16 +55,40 @@ export default function DashboardDefault() {
         <Typography variant="h5">Dashboard de Marketing</Typography>
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Total de Impressões" count="420,236" percentage={59.3} extra="35,000" />
+        <AnalyticEcommerce 
+          title="Total de Impressões" 
+          count={campaignData.metrics.impressions.total}
+          percentage={campaignData.metrics.impressions.growth}
+          extra={campaignData.metrics.impressions.extra}
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Cliques" count="78,250" percentage={70.5} extra="8,900" />
+        <AnalyticEcommerce 
+          title="Cliques"
+          count={campaignData.metrics.clicks.total}
+          percentage={campaignData.metrics.clicks.growth}
+          extra={campaignData.metrics.clicks.extra}
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Conversões" count="18,800" percentage={27.4} isLoss color="warning" extra="1,943" />
+        <AnalyticEcommerce 
+          title="Conversões" 
+          count={campaignData.metrics.conversions.total}
+          percentage={campaignData.metrics.conversions.growth}
+          isLoss 
+          color="warning" 
+          extra={campaignData.metrics.conversions.extra}
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="ROI" count="35.78%" percentage={27.4} isLoss color="warning" extra="20.95%" />
+        <AnalyticEcommerce 
+          title="ROI" 
+          count={campaignData.metrics.roi.total}
+          percentage={campaignData.metrics.roi.growth}
+          isLoss 
+          color="warning" 
+          extra={campaignData.metrics.roi.extra}
+        />
       </Grid>
 
       <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
@@ -151,60 +179,43 @@ export default function DashboardDefault() {
               }
             }}
           >
-            <ListItemButton divider>
-              <ListItemAvatar>
-                <Avatar sx={{ color: 'success.main', bgcolor: 'success.lighter' }}>
-                  <GiftOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Campanha #002434</Typography>} secondary="Hoje, 2:00 AM" />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + 1,430 Cliques
-                  </Typography>
-                  <Typography variant="h6" color="text.secondary" noWrap>
-                    78% CTR
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
-            <ListItemButton divider>
-              <ListItemAvatar>
-                <Avatar sx={{ color: 'primary.main', bgcolor: 'primary.lighter' }}>
-                  <MessageOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Campanha #984947</Typography>} secondary="5 de Agosto, 1:45 PM" />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + 302 Leads
-                  </Typography>
-                  <Typography variant="h6" color="text.secondary" noWrap>
-                    8% Conversão
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar sx={{ color: 'error.main', bgcolor: 'error.lighter' }}>
-                  <SettingOutlined />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Campanha #988784</Typography>} secondary="7 horas atrás" />
-              <ListItemSecondaryAction>
-                <Stack alignItems="flex-end">
-                  <Typography variant="subtitle1" noWrap>
-                    + 682 Impressões
-                  </Typography>
-                  <Typography variant="h6" color="text.secondary" noWrap>
-                    16% Alcance
-                  </Typography>
-                </Stack>
-              </ListItemSecondaryAction>
-            </ListItemButton>
+            {campaignData.recentCampaigns.map((campaign) => (
+              <ListItemButton key={campaign.id} divider>
+                <ListItemAvatar>
+                  <Avatar sx={{ color: 'success.main', bgcolor: 'success.lighter' }}>
+                    <GiftOutlined />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText 
+                  primary={<Typography variant="subtitle1">Campanha #{campaign.id}</Typography>} 
+                  secondary={campaign.date} 
+                />
+                <ListItemSecondaryAction>
+                  <Stack alignItems="flex-end">
+                    {campaign.clicks && (
+                      <>
+                        <Typography variant="subtitle1" noWrap>
+                          + {campaign.clicks} Cliques
+                        </Typography>
+                        <Typography variant="h6" color="text.secondary" noWrap>
+                          {campaign.ctr}
+                        </Typography>
+                      </>
+                    )}
+                    {campaign.leads && (
+                      <>
+                        <Typography variant="subtitle1" noWrap>
+                          + {campaign.leads} Leads
+                        </Typography>
+                        <Typography variant="h6" color="text.secondary" noWrap>
+                          {campaign.conversion}
+                        </Typography>
+                      </>
+                    )}
+                  </Stack>
+                </ListItemSecondaryAction>
+              </ListItemButton>
+            ))}
           </List>
         </MainCard>
         <MainCard sx={{ mt: 2 }}>
