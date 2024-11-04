@@ -52,4 +52,4 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE.md par
 
 Equipe AdAnalytics - contato@adanalytics.com
 
-Link do Projeto: [https://github.com/Ad-Analytics/Front-End.git](https://github.com/sua-empresa/adanalytics)
+Link do Projeto: [https://github.com/Ad-Analytics]
