@@ -1,45 +1,23 @@
 import { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 
 // project import
 import Loadable from 'components/Loadable';
 import Dashboard from 'layout/Dashboard';
+import HomeLayout from 'layout/HomeLayout';
 
-const Color = Loadable(lazy(() => import('pages/component-overview/color')));
-const Typography = Loadable(lazy(() => import('pages/component-overview/typography')));
-const Shadow = Loadable(lazy(() => import('pages/component-overview/shadows')));
+const HomePage = Loadable(lazy(() => import('pages/home')));
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index')));
 const Chat = Loadable(lazy(() => import('pages/chat/chat')));
 const CheckoutPage = Loadable(lazy(() => import('pages/payment/CheckoutPage')));
-// ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
   path: '/',
   element: <Dashboard />,
   children: [
     {
-      path: '/',
-      element: <DashboardDefault />
-    },
-    {
-      path: 'color',
-      element: <Color />
-    },
-    {
       path: 'dashboard',
-      children: [
-        {
-          path: 'default',
-          element: <DashboardDefault />
-        }
-      ]
-    },
-    {
-      path: 'shadow',
-      element: <Shadow />
-    },
-    {
-      path: 'typography',
-      element: <Typography />
+      element: <DashboardDefault />
     },
     {
       path: 'chat',
