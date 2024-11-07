@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 import {
   Box,
   Container,
-  Paper,
-  Typography,
   Stepper,
   Step,
   StepLabel,
   Grid,
-  useTheme
+  useTheme,
+  StepConnector,
+  styled
 } from '@mui/material';
 import MainCard from 'components/MainCard';
 import { styles } from './styles';
+
+// Ícones
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 // Componentes
 import ReviewStep from './components/ReviewStep';
@@ -19,7 +24,65 @@ import PaymentForm from './components/PaymentForm';
 import ConfirmationStep from './components/ConfirmationStep';
 import OrderSummary from './components/OrderSummary';
 
-const steps = ['Revisão', 'Pagamento', 'Confirmação'];
+const CustomStepConnector = styled(StepConnector)(({ theme }) => ({
+  '& .MuiStepConnector-line': {
+    borderColor: theme.palette.mode === 'dark' 
+      ? 'rgba(255, 255, 255, 0.12)' 
+      : 'rgba(0, 0, 0, 0.12)',
+    borderTopWidth: 3,
+    borderRadius: 1,
+  },
+  '&.Mui-active': {
+    '& .MuiStepConnector-line': {
+      borderColor: theme.palette.primary.main,
+    },
+  },
+  '&.Mui-completed': {
+    '& .MuiStepConnector-line': {
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
+
+const CustomStepIcon = styled('div')(({ theme, ownerState }) => ({
+  backgroundColor: theme.palette.mode === 'dark' 
+    ? 'rgba(255, 255, 255, 0.08)' 
+    : 'rgba(0, 0, 0, 0.08)',
+  zIndex: 1,
+  color: theme.palette.mode === 'dark' 
+    ? 'rgba(255, 255, 255, 0.5)' 
+    : 'rgba(0, 0, 0, 0.38)',
+  width: 50,
+  height: 50,
+  display: 'flex',
+  borderRadius: '50%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  ...(ownerState.active && {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    boxShadow: '0 4px 10px 0 rgba(0,0,0,0.25)',
+  }),
+  ...(ownerState.completed && {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+  }),
+}));
+
+const steps = [
+  {
+    label: 'Revisão',
+    icon: <ShoppingCartOutlinedIcon />
+  },
+  {
+    label: 'Pagamento',
+    icon: <PaymentOutlinedIcon />
+  },
+  {
+    label: 'Confirmação',
+    icon: <CheckCircleOutlineIcon />
+  }
+];
 
 const CheckoutPage = () => {
   const theme = useTheme();
@@ -29,13 +92,15 @@ const CheckoutPage = () => {
       {
         id: 1,
         name: 'Plano Premium',
+        description: 'Assinatura mensal com todos os recursos',
         price: 199.90,
         quantity: 1,
-        image: '/path/to/image.jpg'
+        image: 'src/assets/images/auth/logo.png'
       }
     ],
     total: 199.90,
     shipping: 0,
+    discount: 19.90
   });
 
   const handleNext = () => {
@@ -61,20 +126,38 @@ const CheckoutPage = () => {
 
   return (
     <Container maxWidth="lg" sx={styles.mainContainer}>
-      <MainCard sx={styles.mainCard}>
+      <MainCard 
+        sx={styles.mainCard}
+        contentSX={{ backgroundColor: '#0A1929' }}
+        border={false}
+      >
         <Box sx={styles.stepperContainer}>
-          <Stepper activeStep={activeStep} alternativeLabel>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+          <Stepper 
+            activeStep={activeStep} 
+            alternativeLabel 
+            connector={<CustomStepConnector />}
+          >
+            {steps.map((step, index) => (
+              <Step key={step.label}>
+                <StepLabel
+                  StepIconComponent={(props) => (
+                    <CustomStepIcon {...props} ownerState={{ ...props, active: index === activeStep }}>
+                      {step.icon}
+                    </CustomStepIcon>
+                  )}
+                >
+                  {step.label}
+                </StepLabel>
               </Step>
             ))}
           </Stepper>
         </Box>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
-            {getStepContent(activeStep)}
+            <Box sx={styles.contentContainer}>
+              {getStepContent(activeStep)}
+            </Box>
           </Grid>
           
           <Grid item xs={12} md={4}>
