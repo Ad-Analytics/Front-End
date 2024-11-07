@@ -1,16 +1,27 @@
-import React, { useEffect } from 'react';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+// assets
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
-const YourComponent = () => {
-    useEffect(() => {
-      initMercadoPago('MP_KEY', { locale: 'pt-BR' });
-    }, []);
-
-    return (
-      <div>
-        <Wallet initialization={{preferenceId: '<PREFERENCE_ID>'}} />
-      </div>
-    );
+// icons
+const icons = {
+  ShoppingCartCheckoutIcon
 };
 
-export default YourComponent;
+// ==============================|| MENU ITEMS - PAYMENT ||============================== //
+
+const payment = {
+  id: 'payment',
+  title: 'Pagamento',
+  type: 'group',
+  children: [
+    {
+      id: 'checkout',
+      title: 'Checkout',
+      type: 'item',
+      url: '/payment',
+      icon: icons.ShoppingCartCheckoutIcon,
+      breadcrumbs: false
+    }
+  ]
+};
+
+export default payment;

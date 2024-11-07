@@ -9,7 +9,7 @@ const Typography = Loadable(lazy(() => import('pages/component-overview/typograp
 const Shadow = Loadable(lazy(() => import('pages/component-overview/shadows')));
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index')));
 const Chat = Loadable(lazy(() => import('pages/chat/chat')));
-
+const CheckoutPage = Loadable(lazy(() => import('pages/payment/CheckoutPage')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -44,6 +44,10 @@ const MainRoutes = {
     {
       path: 'chat',
       element: <Chat />
+    },
+    {
+      path: 'payment',
+      element: <CheckoutPage />
     }
   ]
 };
