@@ -10,13 +10,43 @@ import {
   Typography,
   useTheme
 } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PaymentIcon from '@mui/icons-material/Payment';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ReviewStep from './components/ReviewStep';
 import PaymentForm from './components/PaymentForm';
 import ConfirmationStep from './components/ConfirmationStep';
 import OrderSummary from './components/OrderSummary';
 import { styles } from './styles';
+import SecurityBadges from './components/SecurityBadges';
 
 const steps = ['Revisão', 'Pagamento', 'Confirmação'];
+
+const CustomStepIcon = ({ active, completed, icon }) => {
+  const icons = {
+    1: <ShoppingCartIcon />,
+    2: <PaymentIcon />,
+    3: <CheckCircleIcon />
+  };
+
+  return (
+    <div
+      style={{
+        backgroundColor: completed || active ? '#1976d2' : 'rgba(255, 255, 255, 0.1)',
+        color: completed || active ? '#fff' : 'rgba(255, 255, 255, 0.5)',
+        width: 40,
+        height: 40,
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'all 0.3s ease'
+      }}
+    >
+      {icons[String(icon)]}
+    </div>
+  );
+};
 
 const CheckoutPage = () => {
   const theme = useTheme();
@@ -54,7 +84,7 @@ const CheckoutPage = () => {
         ...prev,
         items: updatedItems,
         total: newTotal,
-        discount: prev.discount > 0 ? (newTotal * 10) / 100 : 0 // Recalcula o desconto se existir
+        discount: prev.discount > 0 ? (newTotal * 10) / 100 : 0
       };
     });
   };
@@ -100,12 +130,15 @@ const CheckoutPage = () => {
                 alternativeLabel
                 sx={styles.stepperContainer}
               >
-                {steps.map((label) => (
+                {steps.map((label, index) => (
                   <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
+                    <StepLabel StepIconComponent={CustomStepIcon}>
+                      {label}
+                    </StepLabel>
                   </Step>
                 ))}
               </Stepper>
+              <SecurityBadges />
             </CardContent>
           </Card>
         </Grid>

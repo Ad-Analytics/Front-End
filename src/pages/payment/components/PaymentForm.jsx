@@ -31,6 +31,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import InputMask from 'react-input-mask';
 import { styles } from '../styles';
+import visaImg from '../../../assets/images/payments/visa.png';
+import mastercardImg from '../../../assets/images/payments/mastercard.png';
+import eloImg from '../../../assets/images/payments/elo.png';
+import pixImg from '../../../assets/images/payments/pix.png';
+import boletoImg from '../../../assets/images/payments/boleto.png';
 
 const validationSchema = Yup.object({
   cardNumber: Yup.string()
@@ -117,7 +122,18 @@ const PaymentForm = ({ onNext, onBack }) => {
           Forma de Pagamento
         </Typography>
         <Divider sx={{ my: 2, borderColor: 'rgba(255, 255, 255, 0.1)' }} />
-
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="subtitle2" color="white" gutterBottom>
+            Métodos de Pagamento Aceitos:
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
+            <img src={visaImg} alt="Visa" height="25" />
+            <img src={mastercardImg} alt="Mastercard" height="25" />
+            <img src={eloImg} alt="Elo" height="25" />
+            <img src={pixImg} alt="Pix" height="25" />
+            <img src={boletoImg} alt="Boleto" height="25" />
+          </Box>
+        </Box>
         <FormControl component="fieldset" fullWidth>
           <RadioGroup value={paymentMethod} onChange={handlePaymentMethodChange}>
             {/* Cartão de Crédito */}
