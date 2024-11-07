@@ -37,17 +37,7 @@ const OrderSummary = ({ orderData, activeStep, onNext, onBack }) => {
             </Typography>
           </Box>
 
-          {orderData.shipping > 0 && (
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="body1" color="text.secondary">
-                Frete
-              </Typography>
-              <Typography variant="body1">
-                {formatPrice(orderData.shipping)}
-              </Typography>
-            </Box>
-          )}
-
+          {/* Mostra o desconto apenas se for maior que 0 */}
           {orderData.discount > 0 && (
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="body1" color="text.secondary">
@@ -64,7 +54,7 @@ const OrderSummary = ({ orderData, activeStep, onNext, onBack }) => {
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography variant="h6">Total</Typography>
             <Typography variant="h6" color="primary">
-              {formatPrice(orderData.total + orderData.shipping - (orderData.discount || 0))}
+              {formatPrice(orderData.total - (orderData.discount || 0))}
             </Typography>
           </Box>
 
