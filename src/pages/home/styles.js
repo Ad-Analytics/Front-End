@@ -21,3 +21,21 @@ export const styles = {
       }
     }
   };
+
+export const globalAnimations = {
+  '@keyframes fadeIn': {
+    from: {
+      opacity: 0,
+      transform: 'translateY(20px)'
+    },
+    to: {
+      opacity: 1,
+      transform: 'translateY(0)'
+    }
+  },
+  '@keyframes float': {
+    '0%': { transform: 'translateY(0px)' },
+    '50%': { transform: 'translateY(-10px)' },
+    '100%': { transform: 'translateY(0px)' }
+  }
+};

@@ -1,5 +1,6 @@
 import { Box, Container, Grid, Typography, Card, CardContent, Button, Stack, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import styled from '@emotion/styled';
 
 const plans = [
   {
@@ -12,7 +13,7 @@ const plans = [
       'Suporte por email',
       'Até 3 usuários'
     ],
-    buttonText: 'Começar Grátis',
+    buttonText: 'Começar Agora',
     buttonVariant: 'outlined'
   },
   {
@@ -47,6 +48,22 @@ const plans = [
   }
 ];
 
+const PricingCard = styled(Card)(({ theme, highlighted }) => ({
+  height: '100%',
+  background: highlighted 
+    ? 'linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(16,185,129,0.1) 100%)'
+    : 'linear-gradient(145deg, rgba(30,41,59,0.7) 0%, rgba(15,23,42,0.7) 100%)',
+  backdropFilter: 'blur(10px)',
+  border: highlighted 
+    ? '2px solid rgba(59,130,246,0.3)'
+    : '1px solid rgba(59,130,246,0.1)',
+  transition: 'all 0.3s ease-in-out',
+  '&:hover': {
+    transform: highlighted ? 'scale(1.05)' : 'scale(1.02)',
+    boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+  }
+}));
+
 export default function Pricing() {
   return (
     <Box sx={{ py: 8, backgroundColor: 'background.default' }}>
@@ -61,7 +78,7 @@ export default function Pricing() {
         <Grid container spacing={4} sx={{ mt: 4 }}>
           {plans.map((plan) => (
             <Grid item key={plan.title} xs={12} md={4}>
-              <Card 
+              <PricingCard 
                 sx={{
                   height: '100%',
                   display: 'flex',
@@ -108,7 +125,7 @@ export default function Pricing() {
                     </Button>
                   </Stack>
                 </CardContent>
-              </Card>
+              </PricingCard>
             </Grid>
           ))}
         </Grid>

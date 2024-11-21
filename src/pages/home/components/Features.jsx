@@ -8,11 +8,23 @@ import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 const FeatureCard = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   height: '100%',
-  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-  transition: 'transform 0.3s ease-in-out',
+  background: 'linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.7) 100%)',
+  backdropFilter: 'blur(10px)',
+  border: '1px solid rgba(59, 130, 246, 0.1)',
+  transition: 'all 0.3s ease-in-out',
   '&:hover': {
     transform: 'translateY(-8px)',
-    backgroundColor: 'rgba(255, 255, 255, 0.08)'
+    boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+    border: '1px solid rgba(59, 130, 246, 0.3)',
+    '& .icon': {
+      transform: 'scale(1.1)',
+      color: theme.palette.primary.main
+    }
+  },
+  '& .icon': {
+    transition: 'all 0.3s ease-in-out',
+    fontSize: 48,
+    color: theme.palette.grey[400]
   }
 }));
 

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -25,6 +25,7 @@ import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 
 export default function AuthLogin({ isDemo = false }) {
+  const navigate = useNavigate();
   const [checked, setChecked] = React.useState(false);
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -45,9 +46,20 @@ export default function AuthLogin({ isDemo = false }) {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string().max(255).required('Password is required')
+          email: Yup.string().email('Deve ser um email válido').max(255).required('Email é obrigatório'),
+          password: Yup.string().max(255).required('Senha é obrigatória')
         })}
+        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+          try {
+            setStatus({ success: true });
+            setSubmitting(false);
+            navigate('/dashboard');
+          } catch (err) {
+            setStatus({ success: false });
+            setErrors({ submit: err.message });
+            setSubmitting(false);
+          }
+        }}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit}>
@@ -118,6 +130,18 @@ export default function AuthLogin({ isDemo = false }) {
                         name="checked"
                         color="primary"
                         size="small"
+                        sx={{
+                          color: 'primary.main',
+                          '&.Mui-checked': {
+                            color: 'primary.main',
+                          },
+                          '& .MuiSvgIcon-root': {
+                            backgroundColor: 'transparent'
+                          },
+                          '&:hover': {
+                            backgroundColor: 'rgba(0, 0, 0, 0.04) !important'
+                          }
+                        }}
                       />
                     }
                     label={<Typography variant="h6">Matenha-me Logado</Typography>}
