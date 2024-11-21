@@ -4,9 +4,11 @@ import { Navigate } from 'react-router-dom';
 // project import
 import Loadable from 'components/Loadable';
 import Dashboard from 'layout/Dashboard';
-import HomeLayout from 'layout/HomeLayout';
+import SupportPage from 'pages/support/SupportPage';  
+import CampaignsPage from 'pages/campaigns/index';
+import CampaignDetails from 'pages/campaign/CampaignDetails'; 
+import NotificationsPage from 'pages/notifications/index';
 
-const HomePage = Loadable(lazy(() => import('pages/home')));
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/index')));
 const Chat = Loadable(lazy(() => import('pages/chat/chat')));
 const CheckoutPage = Loadable(lazy(() => import('pages/payment/CheckoutPage')));
@@ -31,6 +33,22 @@ const MainRoutes = {
     {
       path: 'payment',
       element: <CheckoutPage />
+    },
+    {
+      path: 'campaigns',
+      element: <CampaignsPage />
+    },
+    {
+      path: 'campaign/:id',
+      element: <CampaignDetails />
+    },
+    {
+      path: 'support',
+      element: <SupportPage />
+    },
+    {
+      path: 'notifications',
+      element: <NotificationsPage />
     }
   ]
 };

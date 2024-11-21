@@ -24,21 +24,27 @@
   "recentCampaigns": [
     {
       "id": "002434",
-      "clicks": 1430,
+      "status": "Ativa",
+      "clicks": "1430",
       "ctr": "78%",
-      "date": "Hoje, 2:00 AM"
+      "leads": null,
+      "progress": 78
     },
     {
       "id": "984947",
-      "leads": 302,
-      "conversion": "8%",
-      "date": "5 de Agosto, 1:45 PM"
+      "status": "Ativa",
+      "clicks": "850",
+      "ctr": "65%",
+      "leads": "302",
+      "progress": 45
     },
     {
       "id": "988784",
-      "impressions": 682,
-      "reach": "16%",
-      "date": "7 horas atrás"
+      "status": "Pausada",
+      "clicks": "720",
+      "ctr": "45%",
+      "leads": null,
+      "progress": 32
     }
   ]
 } 

@@ -40,6 +40,8 @@
     "boleto-pdf": "^0.4.0",
     "bwip-js": "^4.5.1",
     "date-fns": "^4.1.0",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "formik": "^2.4.5",
     "framer-motion": "^11.0.8",
     "jspdf": "^2.5.2",

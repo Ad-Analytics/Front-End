@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -18,6 +19,7 @@ import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 // project import
 import MainCard from 'components/MainCard';
@@ -52,19 +54,30 @@ const actionSX = {
 export default function Notification() {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
+  const navigate = useNavigate();
 
   const anchorRef = useRef(null);
-  const [read, setRead] = useState(2);
+  const [read, setRead] = useState(0);
   const [open, setOpen] = useState(false);
-  const handleToggle = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleToggle = (event) => {
+    setAnchorEl(event.currentTarget);
     setOpen((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+    if (anchorRef.current && anchorRef.current.contains(event?.target)) {
       return;
     }
     setOpen(false);
+    setAnchorEl(null);
+  };
+
+  const handleViewAll = () => {
+    setOpen(false);
+    setAnchorEl(null);
+    navigate('/notifications');
   };
 
   const iconBackColorOpen = 'grey.100';
@@ -88,7 +101,7 @@ export default function Notification() {
       <Popper
         placement={matchesXs ? 'bottom' : 'bottom-end'}
         open={open}
-        anchorEl={anchorRef.current}
+        anchorEl={anchorEl}
         role={undefined}
         transition
         disablePortal
@@ -225,15 +238,34 @@ export default function Notification() {
                       </ListItemSecondaryAction>
                     </ListItemButton>
                     <Divider />
-                    <ListItemButton sx={{ textAlign: 'center', py: `${12}px !important` }}>
-                      <ListItemText
-                        primary={
-                          <Typography variant="h6" color="primary">
-                            Ver Todas
-                          </Typography>
-                        }
-                      />
-                    </ListItemButton>
+                    <Box
+                      sx={{
+                        p: 1.5,
+                        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                        display: 'flex',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <Button
+                        fullWidth
+                        onClick={handleViewAll}
+                        sx={{
+                          color: 'primary.main',
+                          textTransform: 'none',
+                          fontSize: '0.875rem',
+                          fontWeight: 500,
+                          py: 1,
+                          '&:hover': {
+                            backgroundColor: 'rgba(33, 150, 243, 0.08)'
+                          },
+                          '&:active': {
+                            backgroundColor: 'rgba(33, 150, 243, 0.12)'
+                          }
+                        }}
+                      >
+                        Ver Todas
+                      </Button>
+                    </Box>
                   </List>
                 </MainCard>
               </ClickAwayListener>

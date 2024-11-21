@@ -15,7 +15,7 @@ const payment = {
   children: [
     {
       id: 'checkout',
-      title: 'Checkout',
+      title: 'Assinatura',
       type: 'item',
       url: '/payment',
       icon: icons.ShoppingCartCheckoutIcon,

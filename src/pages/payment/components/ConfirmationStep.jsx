@@ -64,7 +64,11 @@ const ConfirmationStep = ({ orderNumber }) => {
                   Nosso suporte está disponível 24/7
                 </Typography>
               </Box>
-              <Button variant="outlined" startIcon={<ChatIcon />}>
+              <Button 
+                variant="outlined" 
+                startIcon={<ChatIcon />}
+                onClick={() => navigate('/support')}
+              >
                 Falar com Suporte
               </Button>
             </Stack>
@@ -82,7 +86,7 @@ const ConfirmationStep = ({ orderNumber }) => {
             <Button
               variant="outlined"
               startIcon={<ReceiptIcon />}
-              onClick={() => navigate(`/orders/${orderNumber}`)}
+              onClick={() => navigate('/perfil/cobranca')}
             >
               Ver Pedido
             </Button>

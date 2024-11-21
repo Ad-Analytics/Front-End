@@ -35,6 +35,7 @@ import areaData from 'mock/dashboard/areaReport.json';
 import { PlatformProvider } from 'contexts/PlatformContext';
 import PlatformSelector from 'components/selectors/PlatformSelector';
 import { usePlatform } from 'contexts/PlatformContext';
+import { useNavigate } from 'react-router-dom';
 
 const avatarSX = {
   width: 36,
@@ -70,6 +71,12 @@ function DashboardHeader() {
 }
 
 export default function DashboardDefault() {
+  const navigate = useNavigate();
+
+  const handleCampaignClick = (campaignId) => {
+    navigate(`/campaign/${campaignId}`);
+  };
+
   return (
     <PlatformProvider>
       <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -197,12 +204,20 @@ export default function DashboardDefault() {
                 '& .MuiListItemButton-root': {
                   py: 1.5,
                   '& .MuiAvatar-root': avatarSX,
-                  '& .MuiListItemSecondaryAction-root': { ...actionSX, position: 'relative' }
+                  '& .MuiListItemSecondaryAction-root': { ...actionSX, position: 'relative' },
+                  '&:hover': {
+                    bgcolor: 'rgba(255, 255, 255, 0.05)'
+                  },
+                  cursor: 'pointer'
                 }
               }}
             >
               {campaignData.recentCampaigns.map((campaign) => (
-                <ListItemButton key={campaign.id} divider>
+                <ListItemButton 
+                  key={campaign.id} 
+                  divider
+                  onClick={() => handleCampaignClick(campaign.id)}
+                >
                   <ListItemAvatar>
                     <Avatar sx={{ color: 'success.main', bgcolor: 'success.lighter' }}>
                       <GiftOutlined />
@@ -262,7 +277,18 @@ export default function DashboardDefault() {
                   </AvatarGroup>
                 </Grid>
               </Grid>
-              <Button size="small" variant="contained" sx={{ textTransform: 'capitalize' }}>
+              <Button 
+                size="small" 
+                variant="contained" 
+                sx={{ 
+                  textTransform: 'capitalize',
+                  bgcolor: '#2196f3',
+                  '&:hover': {
+                    bgcolor: '#1976d2'
+                  }
+                }}
+                onClick={() => navigate('/support')}
+              >
                 Precisa de Ajuda?
               </Button>
             </Stack>

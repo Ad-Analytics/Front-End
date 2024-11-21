@@ -145,6 +145,94 @@ const UserInfo = styled(Box)({
   backgroundColor: '#292e42',
 });
 
+const mockResponses = {
+  'Análise de gráficos de vendas': `Baseado nos dados de vendas dos últimos 6 meses:
+
+Receita:
+- Maior valor: R$ 180 (Janeiro)
+- Menor valor: R$ 90 (Fevereiro)
+- Média mensal: R$ 130,67
+
+Custos:
+- Maior custo: R$ 168 (Maio)
+- Menor custo: R$ 45 (Fevereiro)
+- Média mensal: R$ 110,00
+
+Lucro Líquido: R$ 1.560
+
+Recomendações:
+1. Investigar queda de 50% nas vendas em Fevereiro
+2. Otimizar custos em Maio que superaram a receita
+3. Replicar estratégias de Janeiro que teve melhor performance`,
+
+  'Dashboard de desempenho': `Análise dos KPIs principais:
+
+Métricas de Campanha:
+- Impressões: 420.236 (↑ 59,3%)
+- Cliques: 78.250 (↑ 70,5%)
+- Conversões: 18.800 (↑ 27,4%)
+- ROI: 35,78% (↑ 27,4%)
+
+Performance por Plataforma:
+Google Ads:
+- Lucro mensal: R$ 15.260
+- CTR médio: 78%
+- Conversão média: 8%
+
+Meta Ads:
+- Lucro mensal: R$ 12.890
+- Taxa de alcance: 16%
+- Crescimento: 27,4%
+
+Recomendação: Priorizar investimentos no Google Ads que apresenta melhor ROI.`,
+
+  'Métricas de engajamento': `Análise das interações nas redes sociais:
+
+Visualizações de Página (última semana):
+- Total: 401 visualizações
+- Pico: 109 (dia 6)
+- Média diária: 57,3
+- Crescimento: 45,14%
+
+Sessões:
+- Total: 247 sessões
+- Pico: 52 (dia 6)
+- Média diária: 35,3
+- Taxa de retenção: 58%
+
+Tendências:
+- Melhor dia: Sexto dia da semana
+- Horário de pico: Entre 14:00 e 16:00
+- Páginas mais visitadas: Dashboard e Relatórios
+
+Recomendações:
+1. Aumentar publicações nos horários de pico
+2. Melhorar retenção de usuários
+3. Otimizar conteúdo para dias de maior engajamento`,
+
+  'Previsão de receita': `Projeção para o próximo trimestre:
+
+Google Ads:
+- Mês 1: R$ 195.000 (↑ 8%)
+- Mês 2: R$ 205.000 (↑ 5%)
+- Mês 3: R$ 218.000 (↑ 6%)
+
+Meta Ads:
+- Mês 1: R$ 165.000 (↑ 7%)
+- Mês 2: R$ 172.000 (↑ 4%)
+- Mês 3: R$ 180.000 (↑ 5%)
+
+Fatores de Crescimento:
+- ROI atual: 35,78%
+- Crescimento de conversões: 27,4%
+- Aumento de impressões: 59,3%
+
+Recomendações:
+1. Aumentar investimento em Google Ads em 15%
+2. Otimizar campanhas do Meta Ads
+3. Focar em períodos de maior conversão`
+};
+
 export default function AdAnalyticsDashboard() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
@@ -187,19 +275,38 @@ export default function AdAnalyticsDashboard() {
     setIsTyping(true);
 
     try {
-      const response = await nlbridgeAdapter.sendMessage({
-        message: input,
-        context: messages.map(msg => ({
-          role: msg.isUser ? 'user' : 'assistant',
-          content: msg.text
-        }))
-      });
+      const mockResponse = mockResponses[input];
       
-      setIsTyping(false);
-      setMessages(prev => [...prev, { 
-        text: response.content || response.message,
-        isUser: false 
-      }]);
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simula delay
+      
+      if (mockResponse) {
+        setIsTyping(false);
+        setMessages(prev => [...prev, { 
+          text: mockResponse,
+          isUser: false 
+        }]);
+      } else {
+        setIsTyping(false);
+        setMessages(prev => [...prev, { 
+          text: `O Ad Analytics é uma ferramenta avançada de análise de publicidade digital que oferece:
+
+- Monitoramento em tempo real de campanhas do Google Ads e Meta Ads
+- Análise detalhada de métricas como impressões, cliques e conversões
+- Dashboard interativo com visualização de dados
+- Relatórios personalizados de desempenho
+- Previsões baseadas em dados históricos
+- Recomendações automáticas para otimização
+
+Atualmente seus principais indicadores são:
+- ROI médio: 35,78%
+- Taxa de crescimento: 27,4%
+- Impressões totais: 420.236
+- Conversões: 18.800
+
+Como posso ajudar você a analisar melhor seus dados?`,
+          isUser: false 
+        }]);
+      }
 
     } catch (error) {
       console.error('Erro:', error);
