@@ -1,12 +1,13 @@
 import { lazy } from 'react';
 
 // project import
-import Loadable from 'components/Loadable';
-import MinimalLayout from 'layout/MinimalLayout';
+import Loadable from '../components/Loadable';
+import MinimalLayout from '../layout/MinimalLayout';
 
-// render - login
-const AuthLogin = Loadable(lazy(() => import('pages/authentication/login')));
-const AuthRegister = Loadable(lazy(() => import('pages/authentication/register')));
+// render
+const AuthLogin = Loadable(lazy(() => import('../pages/authentication/login')));
+const AuthRegister = Loadable(lazy(() => import('../pages/authentication/register')));
+const EmailConfirmation = Loadable(lazy(() => import('../pages/authentication/EmailConfirmation')));
 
 // ==============================|| AUTH ROUTING ||============================== //
 
@@ -15,12 +16,16 @@ const LoginRoutes = {
   element: <MinimalLayout />,
   children: [
     {
-      path: '/login',
+      path: 'login',
       element: <AuthLogin />
     },
     {
-      path: '/register',
+      path: 'register',
       element: <AuthRegister />
+    },
+    {
+      path: 'email-confirmation',
+      element: <EmailConfirmation />
     }
   ]
 };
