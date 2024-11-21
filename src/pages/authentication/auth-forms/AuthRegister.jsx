@@ -66,7 +66,7 @@ export default function AuthRegister() {
           try {
             setStatus({ success: true });
             setSubmitting(false);
-            navigate('/dashboard');
+            navigate('/email-confirmation');
           } catch (err) {
             setStatus({ success: false });
             setErrors({ submit: err.message });

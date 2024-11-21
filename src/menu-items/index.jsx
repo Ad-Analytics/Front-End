@@ -1,15 +1,10 @@
-// project import
 import dashboard from './dashboard';
-import pages from './page';
-import utilities from './utilities';
-import support from './support';
 import chat from './chat';
 import payment from './payment';
-
-// ==============================|| MENU ITEMS ||============================== //
+import integration from './integration';
 
 const menuItems = {
-  items: [dashboard, chat, payment, pages]
+  items: [dashboard, chat, integration, payment]
 };
 
 export default menuItems;
