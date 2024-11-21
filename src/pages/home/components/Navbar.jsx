@@ -3,6 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -82,8 +83,18 @@ export default function Navbar() {
           </Box>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
-            <NavButton>Entrar</NavButton>
-            <SignUpButton>Inscreva-se</SignUpButton>
+            <NavButton 
+              component={Link} 
+              to="/login"
+            >
+              Entrar
+            </NavButton>
+            <SignUpButton 
+              component={Link} 
+              to="/register"
+            >
+              Inscreva-se
+            </SignUpButton>
           </Box>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -105,18 +116,35 @@ export default function Navbar() {
               <CloseRoundedIcon />
             </IconButton>
           </Box>
-          <MenuItem>Features</MenuItem>
-          <MenuItem>Testimonials</MenuItem>
-          <MenuItem>Highlights</MenuItem>
-          <MenuItem>Pricing</MenuItem>
-          <MenuItem>FAQ</MenuItem>
-          <MenuItem>Blog</MenuItem>
+          <MenuItem>Recursos</MenuItem>
+          <MenuItem>Depoimentos</MenuItem>
+          <MenuItem>Destaques</MenuItem>
+          <MenuItem>Preços</MenuItem>
+          <MenuItem>Dúvidas</MenuItem>
           <Divider sx={{ my: 3 }} />
           <MenuItem>
-            <Button color="primary" variant="contained" fullWidth>Sign up</Button>
+            <Button 
+              component={Link} 
+              to="/register"
+              color="primary" 
+              variant="contained" 
+              fullWidth
+              onClick={toggleDrawer(false)}
+            >
+              Inscreva-se
+            </Button>
           </MenuItem>
           <MenuItem>
-            <Button color="primary" variant="outlined" fullWidth>Sign in</Button>
+            <Button 
+              component={Link} 
+              to="/login"
+              color="primary" 
+              variant="outlined" 
+              fullWidth
+              onClick={toggleDrawer(false)}
+            >
+              Entrar
+            </Button>
           </MenuItem>
         </Box>
       </Drawer>
