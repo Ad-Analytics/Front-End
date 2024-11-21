@@ -80,12 +80,6 @@ const headCells = [
     label: 'Impressões'
   },
   {
-    id: 'clicks',
-    align: 'right',
-    disablePadding: false,
-    label: 'Cliques'
-  },
-  {
     id: 'ctr',
     align: 'right',
     disablePadding: false,
@@ -177,9 +171,6 @@ export default function OrderTable() {
                   </TableCell>
                   <TableCell>{row.name}</TableCell>
                   <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell>
-                    <OrderStatus status={row.carbs} />
-                  </TableCell>
                   <TableCell align="right">
                     <NumericFormat value={row.protein} displayType="text" thousandSeparator prefix="R$" />
                   </TableCell>

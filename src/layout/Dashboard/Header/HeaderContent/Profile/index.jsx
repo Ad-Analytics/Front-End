@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -15,6 +16,10 @@ import Tabs from '@mui/material/Tabs';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 import ProfileTab from './ProfileTab';
 import SettingTab from './SettingTab';
@@ -25,6 +30,9 @@ import Transitions from 'components/@extended/Transitions';
 import LogoutOutlined from '@ant-design/icons/LogoutOutlined';
 import SettingOutlined from '@ant-design/icons/SettingOutlined';
 import UserOutlined from '@ant-design/icons/UserOutlined';
+import EditOutlined from '@ant-design/icons/EditOutlined';
+import ShareAltOutlined from '@ant-design/icons/ShareAltOutlined';
+import WalletOutlined from '@ant-design/icons/WalletOutlined';
 import avatar1 from 'assets/images/users/avatar-1.png';
 import avatarLucas from 'assets/images/users/avatar-lucas.jpg'  
 
@@ -45,6 +53,7 @@ function a11yProps(index) {
 
 export default function Profile() {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -59,6 +68,11 @@ export default function Profile() {
     setOpen(false);
   };
 
+  const handleMenuClick = (path) => {
+    navigate(path);
+    setOpen(false);
+  };
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -66,6 +80,34 @@ export default function Profile() {
   };
 
   const iconBackColorOpen = 'grey.100';
+
+  const menuItems = [
+    {
+      label: 'Ver Perfil',
+      icon: <UserOutlined />,
+      path: '/perfil/ver'
+    },
+    {
+      label: 'Editar Perfil',
+      icon: <EditOutlined />,
+      path: '/perfil/editar'
+    },
+    {
+      label: 'Redes Sociais',
+      icon: <ShareAltOutlined />,
+      path: '/perfil/social'
+    },
+    {
+      label: 'Cobrança',
+      icon: <WalletOutlined />,
+      path: '/perfil/cobranca'
+    },
+    {
+      label: 'Sair',
+      icon: <LogoutOutlined />,
+      path: '/sair'
+    }
+  ];
 
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
@@ -126,50 +168,34 @@ export default function Profile() {
                           </Stack>
                         </Stack>
                       </Grid>
-                      <Grid item>
-                        <Tooltip title="Logout">
-                          <IconButton size="large" sx={{ color: 'text.primary' }}>
-                            <LogoutOutlined />
-                          </IconButton>
-                        </Tooltip>
-                      </Grid>
                     </Grid>
                   </CardContent>
-
-                  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs variant="fullWidth" value={value} onChange={handleChange} aria-label="profile tabs">
-                      <Tab
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textTransform: 'capitalize'
-                        }}
-                        icon={<UserOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
-                        label="Perfil"
-                        {...a11yProps(0)}
-                      />
-                      <Tab
-                        sx={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textTransform: 'capitalize'
-                        }}
-                        icon={<SettingOutlined style={{ marginBottom: 0, marginRight: '10px' }} />}
-                        label="Configurações"
-                        {...a11yProps(1)}
-                      />
-                    </Tabs>
+                  <Box sx={{ p: 2, pt: 0 }}>
+                    <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32 } }}>
+                      {menuItems.map((item) => (
+                        <ListItemButton
+                          key={item.path}
+                          onClick={() => handleMenuClick(item.path)}
+                          sx={{
+                            '&:hover': {
+                              bgcolor: 'primary.lighter'
+                            },
+                            borderRadius: 1
+                          }}
+                        >
+                          <ListItemIcon sx={{ color: 'primary.main' }}>
+                            {item.icon}
+                          </ListItemIcon>
+                          <ListItemText 
+                            primary={item.label}
+                            primaryTypographyProps={{
+                              variant: 'body2'
+                            }}
+                          />
+                        </ListItemButton>
+                      ))}
+                    </List>
                   </Box>
-                  <TabPanel value={value} index={0} dir={theme.direction}>
-                    <ProfileTab />
-                  </TabPanel>
-                  <TabPanel value={value} index={1} dir={theme.direction}>
-                    <SettingTab />
-                  </TabPanel>
                 </MainCard>
               </ClickAwayListener>
             </Paper>
@@ -179,5 +205,5 @@ export default function Profile() {
     </Box>
   );
 }
-
 TabPanel.propTypes = { children: PropTypes.node, value: PropTypes.number, index: PropTypes.number, other: PropTypes.any };
+

@@ -36,6 +36,7 @@ import mastercardImg from '../../../assets/images/payments/mastercard.png';
 import eloImg from '../../../assets/images/payments/elo.png';
 import pixImg from '../../../assets/images/payments/pix.png';
 import boletoImg from '../../../assets/images/payments/boleto.png';
+import boletoPDF from '../BoletoTeste.pdf';
 
 const validationSchema = Yup.object({
   cardNumber: Yup.string()
@@ -113,6 +114,15 @@ const PaymentForm = ({ onNext, onBack }) => {
 
   const handleCopyCode = (code) => {
     navigator.clipboard.writeText(code);
+  };
+
+  const handleDownloadBoleto = () => {
+    const link = document.createElement('a');
+    link.href = boletoPDF;
+    link.download = 'BoletoTeste.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -416,7 +426,7 @@ const PaymentForm = ({ onNext, onBack }) => {
               <Button
                 variant="contained"
                 fullWidth
-                onClick={() => window.open('#', '_blank')}
+                onClick={handleDownloadBoleto}
               >
                 Baixar PDF
               </Button>
